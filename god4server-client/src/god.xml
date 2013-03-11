@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<god xmlns="xmlns:ananas:god4server">
+
+
+	<server-list>
+		<name>*.puyatech.com</name>
+		<group>
+			<name>aliyun</name>
+
+			<server>
+				<name>master</name>
+				<host-name>master.puyatech.com</host-name>
+				<public-ip>42.121.81.153</public-ip>
+				<private-ip>10.200.66.76</private-ip>
+			</server>
+
+			<server>
+				<name>slave</name>
+				<host-name>slave.puyatech.com</host-name>
+				<public-ip>42.121.18.72</public-ip>
+				<private-ip>10.200.70.20</private-ip>
+			</server>
+
+		</group>
+	</server-list>
+
+
+</god>
