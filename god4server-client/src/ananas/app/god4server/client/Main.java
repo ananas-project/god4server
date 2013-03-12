@@ -3,14 +3,11 @@ package ananas.app.god4server.client;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.InetSocketAddress;
-import java.net.Socket;
 import java.util.Properties;
-
-import javax.net.SocketFactory;
 
 import org.apache.log4j.Logger;
 
+import ananas.lib.io.IStreamConnection;
 import ananas.lib.util.CommandLinePropertiesUtil;
 import ananas.lib.util.log4j.AbstractLoggerFactory;
 
@@ -45,19 +42,68 @@ public class Main implements Runnable {
 
 	}
 
+	class MySSHStream implements IStreamConnection {
+
+		private String mHost;
+		private int mPort;
+		private InputStream mIn;
+		private OutputStream mOut;
+
+		public MySSHStream(String host, int port) {
+			this.mHost = host;
+			this.mPort = port;
+		}
+
+		@Override
+		public OutputStream getOutputStream() throws IOException {
+			return this.mOut;
+		}
+
+		@Override
+		public void close() throws IOException {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public InputStream getInputStream() throws IOException {
+			return this.mIn;
+		}
+
+		public void _conn() {
+
+			/*
+			 * SocketFactory sf = SocketFactory.getDefault(); // SocketFactory
+			 * sf = SSLSocketFactory.getDefault();
+			 * 
+			 * Socket sock = sf.createSocket(); sock.connect(new
+			 * InetSocketAddress(host, port));
+			 */
+		}
+
+		public void connect() throws IOException {
+			String cmd = "ssh root@puyatech.com";
+			Process proc = Runtime.getRuntime().exec(cmd);
+
+			this.mIn = proc.getInputStream();
+			this.mOut = proc.getOutputStream();
+		}
+	}
+
 	private void doTry() throws IOException, InterruptedException {
 
 		String host = "puyatech.com";
 		int port = 22;
 
-		SocketFactory sf = SocketFactory.getDefault();
-		// SocketFactory sf = SSLSocketFactory.getDefault();
+		IStreamConnection conn;
+		{
+			MySSHStream stream = new MySSHStream(host, port);
+			stream.connect();
+			conn = stream;
+		}
 
-		Socket sock = sf.createSocket();
-		sock.connect(new InetSocketAddress(host, port));
-
-		InputStream in_sock = sock.getInputStream();
-		OutputStream out_sock = sock.getOutputStream();
+		InputStream in_sock = conn.getInputStream();
+		OutputStream out_sock = conn.getOutputStream();
 
 		OutputStream out_con = System.out;
 		InputStream in_con = System.in;
@@ -65,12 +111,15 @@ public class Main implements Runnable {
 		MyStreamPump pump1 = new MyStreamPump(in_sock, out_con);
 		MyStreamPump pump2 = new MyStreamPump(in_con, out_sock);
 
-		Thread thd = new Thread(pump2);
-		thd.start();
-		pump1.run();
-		thd.join();
+		Thread thd1 = new Thread(pump1);
+		Thread thd2 = new Thread(pump2);
+		thd1.start();
+		thd2.start();
+		// pump1.run();
+		thd1.join();
+		thd2.join();
 
-		sock.close();
+		conn.close();
 	}
 
 	class MyStreamPump implements Runnable {
@@ -87,6 +136,9 @@ public class Main implements Runnable {
 		public void run() {
 
 			try {
+
+				logger.trace("doPump:" + this);
+
 				this.doPump();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -97,16 +149,19 @@ public class Main implements Runnable {
 
 		private void doPump() throws IOException {
 
-			byte[] buff = new byte[256];
+			byte[] buff = new byte[1];
 			for (;;) {
 				int cb = this.mIn.read(buff);
 				if (cb > 0) {
 					this.mOut.write(buff, 0, cb);
+					byte b = buff[0];
+					if (b == 0x0a || b == 0x0d) {
+						System.out.println(this + "CRLF");
+					}
 				} else {
 					break;
 				}
 			}
-
 		}
 	}
 
