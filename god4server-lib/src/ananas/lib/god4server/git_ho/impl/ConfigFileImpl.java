@@ -1,7 +1,7 @@
-package ananas.lib.god4server.head_only_git.impl;
+package ananas.lib.god4server.git_ho.impl;
 
-import ananas.lib.god4server.head_only_git.ConfigFile;
-import ananas.lib.god4server.head_only_git.Repository;
+import ananas.lib.god4server.git_ho.ConfigFile;
+import ananas.lib.god4server.git_ho.Repository;
 
 public class ConfigFileImpl extends AbstractFileMonitor implements ConfigFile {
 

@@ -5,8 +5,8 @@ import java.net.URL;
 
 import org.apache.log4j.Logger;
 
-import ananas.lib.god4server.head_only_git.Repository;
-import ananas.lib.god4server.head_only_git.RepositoryFactory;
+import ananas.lib.god4server.git_ho.Repository;
+import ananas.lib.god4server.git_ho.RepositoryFactory;
 import ananas.lib.util.log4j.AbstractLoggerFactory;
 
 public class Main {

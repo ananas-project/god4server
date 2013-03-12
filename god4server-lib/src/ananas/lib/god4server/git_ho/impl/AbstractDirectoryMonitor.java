@@ -1,9 +1,9 @@
-package ananas.lib.god4server.head_only_git.impl;
+package ananas.lib.god4server.git_ho.impl;
 
 import java.io.File;
 
-import ananas.lib.god4server.head_only_git.DirectoryMonitor;
-import ananas.lib.god4server.head_only_git.Repository;
+import ananas.lib.god4server.git_ho.DirectoryMonitor;
+import ananas.lib.god4server.git_ho.Repository;
 
 public class AbstractDirectoryMonitor implements DirectoryMonitor {
 

@@ -1,6 +1,7 @@
-package ananas.lib.god4server.head_only_git;
+package ananas.lib.god4server.git_ho;
 
-import ananas.lib.god4server.head_only_git.impl.RepositoryFactoryImpl;
+import ananas.lib.god4server.git_ho.impl.RepositoryFactoryImpl;
+import ananas.lib.god4server.git_ho.task.RepoTask;
 
 public interface Repository extends RepositoryDirectory {
 
@@ -15,6 +16,8 @@ public interface Repository extends RepositoryDirectory {
 
 	WorkingDirectory getWorkingDirectory();
 
-	void commit();
+	RepositoryRuntime getRuntime();
+
+	RepoTask commit();
 
 }

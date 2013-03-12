@@ -1,7 +1,7 @@
-package ananas.lib.god4server.head_only_git.impl;
+package ananas.lib.god4server.git_ho.impl;
 
-import ananas.lib.god4server.head_only_git.Repository;
-import ananas.lib.god4server.head_only_git.WorkingDirectory;
+import ananas.lib.god4server.git_ho.Repository;
+import ananas.lib.god4server.git_ho.WorkingDirectory;
 
 public class WorkingDirImpl extends AbstractDirectoryMonitor implements
 		WorkingDirectory {

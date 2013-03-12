@@ -1,10 +1,10 @@
-package ananas.lib.god4server.head_only_git.impl;
+package ananas.lib.god4server.git_ho.impl;
 
 import java.io.File;
 import java.io.IOException;
 
-import ananas.lib.god4server.head_only_git.FileMonitor;
-import ananas.lib.god4server.head_only_git.Repository;
+import ananas.lib.god4server.git_ho.FileMonitor;
+import ananas.lib.god4server.git_ho.Repository;
 
 public class AbstractFileMonitor implements FileMonitor {
 

@@ -1,4 +1,4 @@
-package ananas.lib.god4server.head_only_git.impl;
+package ananas.lib.god4server.git_ho.impl;
 
 interface Const {
 

@@ -1,7 +1,7 @@
-package ananas.lib.god4server.head_only_git.impl;
+package ananas.lib.god4server.git_ho.impl;
 
-import ananas.lib.god4server.head_only_git.LogsManager;
-import ananas.lib.god4server.head_only_git.Repository;
+import ananas.lib.god4server.git_ho.LogsManager;
+import ananas.lib.god4server.git_ho.Repository;
 
 public class LogsManagerImpl extends AbstractDirectoryMonitor implements
 		LogsManager {

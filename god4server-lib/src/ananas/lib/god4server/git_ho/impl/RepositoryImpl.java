@@ -1,22 +1,26 @@
-package ananas.lib.god4server.head_only_git.impl;
+package ananas.lib.god4server.git_ho.impl;
 
 import java.io.File;
 import java.util.List;
 import java.util.Vector;
 
-import ananas.lib.god4server.head_only_git.AbstractMonitor;
-import ananas.lib.god4server.head_only_git.ConfigFile;
-import ananas.lib.god4server.head_only_git.IndexFile;
-import ananas.lib.god4server.head_only_git.LogsManager;
-import ananas.lib.god4server.head_only_git.ObjectsManager;
-import ananas.lib.god4server.head_only_git.RefsManager;
-import ananas.lib.god4server.head_only_git.Repository;
-import ananas.lib.god4server.head_only_git.RepositoryDirectory;
-import ananas.lib.god4server.head_only_git.WorkingDirectory;
+import ananas.lib.god4server.git_ho.AbstractMonitor;
+import ananas.lib.god4server.git_ho.ConfigFile;
+import ananas.lib.god4server.git_ho.IndexFile;
+import ananas.lib.god4server.git_ho.LogsManager;
+import ananas.lib.god4server.git_ho.ObjectsManager;
+import ananas.lib.god4server.git_ho.RefsManager;
+import ananas.lib.god4server.git_ho.Repository;
+import ananas.lib.god4server.git_ho.RepositoryDirectory;
+import ananas.lib.god4server.git_ho.RepositoryRuntime;
+import ananas.lib.god4server.git_ho.WorkingDirectory;
+import ananas.lib.god4server.git_ho.task.RepoTask;
+import ananas.lib.god4server.git_ho.task.TaskName;
 
 public class RepositoryImpl implements Repository {
 
 	private final File mDotDir;
+	private final RepositoryRuntime mRuntime;
 
 	private WorkingDirectory mWorkingDir;
 	private LogsManager mLogsManager;
@@ -25,10 +29,11 @@ public class RepositoryImpl implements Repository {
 	private ConfigFile mConfigFile;
 	private IndexFile mIndexFile;
 
-	public RepositoryImpl(File dotDir) {
+	public RepositoryImpl(RepositoryRuntime rtime, File dotDir) {
 		if (!dotDir.getName().equals(Const.repo_dir_name)) {
 			throw new RuntimeException("bad dot dir name:" + dotDir);
 		}
+		this.mRuntime = rtime;
 		this.mDotDir = dotDir;
 	}
 
@@ -162,8 +167,15 @@ public class RepositoryImpl implements Repository {
 	}
 
 	@Override
-	public void commit() {
-		// TODO Auto-generated method stub
-		
+	public RepoTask commit() {
+		RepoTask task = this.getRuntime().getTaskFactoryRegistrar()
+				.getTaskFactory(TaskName.commit).newTask(this, null);
+		task.start();
+		return task;
+	}
+
+	@Override
+	public RepositoryRuntime getRuntime() {
+		return this.mRuntime;
 	}
 }

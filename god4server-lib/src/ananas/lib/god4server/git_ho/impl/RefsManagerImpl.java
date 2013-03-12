@@ -1,7 +1,7 @@
-package ananas.lib.god4server.head_only_git.impl;
+package ananas.lib.god4server.git_ho.impl;
 
-import ananas.lib.god4server.head_only_git.RefsManager;
-import ananas.lib.god4server.head_only_git.Repository;
+import ananas.lib.god4server.git_ho.RefsManager;
+import ananas.lib.god4server.git_ho.Repository;
 
 public class RefsManagerImpl extends AbstractDirectoryMonitor implements
 		RefsManager {

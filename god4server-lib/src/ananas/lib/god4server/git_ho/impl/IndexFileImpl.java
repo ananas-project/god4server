@@ -1,7 +1,7 @@
-package ananas.lib.god4server.head_only_git.impl;
+package ananas.lib.god4server.git_ho.impl;
 
-import ananas.lib.god4server.head_only_git.IndexFile;
-import ananas.lib.god4server.head_only_git.Repository;
+import ananas.lib.god4server.git_ho.IndexFile;
+import ananas.lib.god4server.git_ho.Repository;
 
 public class IndexFileImpl extends AbstractFileMonitor implements IndexFile {
 
