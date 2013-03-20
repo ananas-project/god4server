@@ -1,4 +1,4 @@
-package ananas.app.god4server.server;
+package ananas.app.god4server.server.servlet;
 
 import java.io.IOException;
 
