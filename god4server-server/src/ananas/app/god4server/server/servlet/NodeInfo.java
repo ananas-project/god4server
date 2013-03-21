@@ -1,6 +1,6 @@
 package ananas.app.god4server.server.servlet;
 
-import ananas.lib.jhrs.JHRSClass;
+import ananas.lib.jhrs.ClassAddress;
 import ananas.lib.jhrs.server.AbstractJHRSClassResponder;
 import ananas.lib.jhrs.server.JHRSRequest;
 import ananas.lib.jhrs.server.JHRSResponse;
@@ -20,7 +20,7 @@ public class NodeInfo extends AbstractJHRSClassResponder /* HttpServlet */{
 	}
 
 	@Override
-	public void onInvokeStaticMethod(JHRSClass aClass, JHRSRequest request,
+	public void onInvokeStaticMethod(ClassAddress aClass, JHRSRequest request,
 			JHRSResponse response) {
 		// TODO Auto-generated method stub
 		super.onInvokeStaticMethod(aClass, request, response);

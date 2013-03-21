@@ -1,8 +1,8 @@
 package test.god4server;
 
 import ananas.lib.jhrs.JHRSAddressComponent;
-import ananas.lib.jhrs.client.DefaultEndpoint;
-import ananas.lib.jhrs.client.ObjectEndpoint;
+import ananas.lib.jhrs.client.ClassEndpoint;
+import ananas.lib.jhrs.client.DefaultClassEndpoint;
 import ananas.lib.json.JSONObject;
 
 public class TestG4S implements Runnable {
@@ -13,10 +13,11 @@ public class TestG4S implements Runnable {
 
 	@Override
 	public void run() {
-		String url = "http://localhost:8080/god4server/NodeInfo?";
-		ObjectEndpoint ep = new DefaultEndpoint(url);
+		String url = "http://localhost:8080/god4server/NodeInfo";
+		ClassEndpoint ep = new DefaultClassEndpoint(url);
+		// ObjectEndpoint ep = new DefaultEndpoint(url);
 		{
-			JHRSAddressComponent comp = ep.getJHRSObject();
+			JHRSAddressComponent comp = ep.getAddress();
 			for (; comp != null; comp = comp.getParent()) {
 				System.out.println(this.nameOf(comp) + " = "
 						+ comp.getAddressString());
