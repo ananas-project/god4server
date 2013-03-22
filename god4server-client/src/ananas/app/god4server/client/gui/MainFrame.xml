@@ -1,5 +1,6 @@
 <JFrame id="root" xmlns:awt="xmlns:ananas:blueprint:awt" height="480"
-	width="640" x="100" xmlns="xmlns:ananas:blueprint:swing" y="100">
+	width="640" x="100" xmlns="xmlns:ananas:blueprint:swing" y="100"
+	title="God4server Client">
 
 	<awt:BorderLayout />
 
@@ -11,16 +12,7 @@
 	<awt:pos value="center" />
 	<JPanel>
 
-		<awt:BorderLayout />
 
-		<awt:pos value="left" />
-		<JLabel text="Workspace:" />
-
-		<awt:pos value="CENTER" />
-		<JComboBox id="combo_path_list" />
-
-		<awt:pos value="right" />
-		<JButton id="button_browse" text="Browse ..." />
 
 	</JPanel>
 

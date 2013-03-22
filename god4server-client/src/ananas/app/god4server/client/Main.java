@@ -33,6 +33,7 @@ public class Main implements Runnable {
 		this.mArguments.get("");
 
 		LoginDialogCtrl dlg = new LoginDialogCtrl();
+
 		dlg.show();
 	}
 
