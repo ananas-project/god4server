@@ -1,0 +1,34 @@
+<JFrame id="root" xmlns:awt="xmlns:ananas:blueprint:awt" height="480"
+	width="640" x="100" xmlns="xmlns:ananas:blueprint:swing" y="100">
+
+	<awt:BorderLayout />
+
+	<awt:pos value="top" />
+	<JLabel text="Select a workspace" background="#159951" />
+
+
+
+	<awt:pos value="center" />
+	<JPanel>
+
+		<awt:BorderLayout />
+
+		<awt:pos value="left" />
+		<JLabel text="Workspace:" />
+
+		<awt:pos value="CENTER" />
+		<JComboBox id="droplist" />
+
+		<awt:pos value="right" />
+		<JButton text="Browse ..." />
+
+	</JPanel>
+
+	<awt:pos value="bottom" />
+	<JPanel>
+
+		<JButton text="Cancel" />
+		<JButton text="OK" />
+	</JPanel>
+
+</JFrame>
